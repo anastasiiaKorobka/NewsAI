@@ -5,6 +5,20 @@ import os
 BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-68r@pwb9u%@ap+ve1d2ga+5qa652_qh8#wlhqonx4ez2wth0@l'
 
+# Ścieżka do plików statycznych
+STATIC_URL = '/static/'
+
+STATICFILES_DIRS = [
+    BASE_DIR / "articles/static/css"
+]
+
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+
+STATICFILES_FINDERS = [
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+]
+
 DEBUG = True
 
 ALLOWED_HOSTS = []
@@ -51,10 +65,20 @@ TEMPLATES = [
 WSGI_APPLICATION = 'ai_news.wsgi.application'
 
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'HOST': '127.0.0.1',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'newsletter',
+        'USER': "anastasiia.korobka",
+        'PASSWORD': "newsletter" ,
     }
 }
 
@@ -80,8 +104,6 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 
 USE_TZ = True
-
-STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 

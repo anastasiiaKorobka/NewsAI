@@ -6,24 +6,41 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}AI News Dashboard{% endblock %}</title>
-    <link rel="stylesheet" href="{% static 'articles/css/dashboard.css' %}">
+    <link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
 </head>
 <body>
     <header>
-        <h1>AI News Dashboard</h1>
-        <nav>
-            <ul>
-                <li><a href="">Home</a></li>
-                <li><a href="">Articles</a></li>
-                <li><a href="">Settings</a></li>
-            </ul>
-        </nav>
+        <div class="header-content">
+            <h1>AI News Dashboard</h1>
+            <nav>
+                <ul>
+                    <li><a href="{% url 'home' %}">Home</a></li>
+                    <li><a href="{% url 'articles' %}">Articles</a></li>
+                    <li><a href="{% url 'settings' %}">Settings</a></li>
+                </ul>
+            </nav>
+            <div class="auth-section">
+                {% if user.is_authenticated %}
+                    <span>Zalogowany jako: {{ user }}</span>
+                    <form id="logout-form" action="{% url 'logout' %}" method="post">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-secondary">Wyloguj</button>
+                    </form>
+                {% else %}
+                    <a href="{% url 'login' %}" class="btn btn-primary">Zaloguj się</a>
+                    <a href="{% url 'register' %}" class="btn btn-secondary">Zarejestruj się</a>
+                {% endif %}
+            </div>
+        </div>
     </header>
-    <main>
-        {% block content %}
-        <!-- Content for each page will go here -->
-        {% endblock %}
+
+    <main class="fade-in">
+        <div class="card">
+            {% block content %}
+            {% endblock %}
+        </div>
     </main>
+
     <footer>
         <p>&copy; 2023 AI News</p>
     </footer>

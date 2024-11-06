@@ -11,7 +11,6 @@ class UserRegisterForm(UserCreationForm):
         model = User
         fields = ['username', 'email', 'password1', 'password2']
 
-
 class UserProfileForm(forms.ModelForm):
     selected_categories = forms.ModelMultipleChoiceField(
         queryset=Category.objects.all(),

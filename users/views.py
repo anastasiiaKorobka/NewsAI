@@ -13,7 +13,7 @@ def register(request):
             form.save()
             username = form.cleaned_data.get('username')
             messages.success(request, f'Konto utworzone dla {username}! Możesz się teraz zalogować.')
-            return redirect('profile')
+            return redirect('home')
     else:
         form = UserRegisterForm()
     all_categories = Category.objects.all()
