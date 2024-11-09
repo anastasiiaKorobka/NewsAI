@@ -10,7 +10,7 @@ class Category(models.Model):
 
 
 class Article(models.Model):
-    title = models.CharField(max_length=255)
+    title = models.CharField(max_length=256)
     url = models.URLField(unique=True)
     summary = models.TextField()
     category = models.ForeignKey(Category, on_delete=models.CASCADE)

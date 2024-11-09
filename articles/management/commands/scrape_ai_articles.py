@@ -1,10 +1,10 @@
 from django.core.management.base import BaseCommand
-from articles.scraper import scrape_ai_articles
-
+from articles.scraper import scrape_all_articles
 
 class Command(BaseCommand):
-    help = "Scrapuje artykuły o AI i zapisuje je w bazie danych"
+    help = "Scrapes articles from multiple sources and categories and saves them to the database"
 
     def handle(self, *args, **kwargs):
-        scrape_ai_articles()
-        self.stdout.write(self.style.SUCCESS("Scrapowanie zakończone pomyślnie"))
+        self.stdout.write("Starting article scraping...")
+        scrape_all_articles()
+        self.stdout.write(self.style.SUCCESS("Article scraping completed successfully"))
