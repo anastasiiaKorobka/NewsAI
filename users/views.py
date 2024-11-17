@@ -35,3 +35,14 @@ def profile(request):
         form = UserProfileForm(instance=user_profile)
     return render(request, 'users/profile.html', locals())
 
+# def select_categories(request):
+#     if request.method == 'POST':
+#         form = CategorySelectionForm(request.POST)
+#         if form.is_valid():
+#             selected_categories = form.cleaned_data['categories']
+#             request.user.userprofile.selected_categories.set(selected_categories)
+#             return redirect('home')
+#     else:
+#         form = CategorySelectionForm()
+#     return render(request, 'articles/select_categories.html', {'form': form})
+#
